@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 
-# Global variables to store model components
+#global variables to store model components
 model = None
 feature_columns = None
 min_max_scaler = None
@@ -45,7 +45,7 @@ def load_model():
         model_loaded = False
         return False
 
-# Initial load attempt
+#Initial load attempt
 load_model()
 
 @app.route('/reload-model-verbose', methods=['GET'])
@@ -86,7 +86,7 @@ def reload_model_verbose():
     results["all_loaded"] = model_loaded
 
     return jsonify(results)
-
+#for checking the versions of the packages
 @app.route('/versions', methods=['GET'])
 def versions():
     import sklearn
@@ -96,7 +96,7 @@ def versions():
         "pandas_version": pd.__version__,
         "numpy_version": np.__version__
     })
-
+#for checking the status of the model
 @app.route('/model-status', methods=['GET'])
 def model_status():
     return jsonify({
@@ -107,12 +107,13 @@ def model_status():
         },
         "model_loaded": model_loaded
     })
-
+#for reloading the model
 @app.route('/reload-model', methods=['GET'])
 def reload_model():
     success = load_model()
     return jsonify({"success": success, "model_loaded": model_loaded})
 
+#forr predicting the accident
 @app.route('/predict', methods=['POST'])
 def predict():
     if not model_loaded:
