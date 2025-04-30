@@ -48,8 +48,8 @@ def load_model():
 #Initial load attempt
 load_model()
 
-@app.route('/reload-model-verbose', methods=['GET'])
-def reload_model_verbose():
+@app.route('/reload-model', methods=['GET'])
+def reload_model():
     global model, feature_columns, min_max_scaler, model_loaded
 
     results = {
